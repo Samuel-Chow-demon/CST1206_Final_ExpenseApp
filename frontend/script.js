@@ -1,6 +1,6 @@
 
 // 1 - Retrieve import module
-import {PORT, API_USER_URL} from './browser_constant.js';
+import {PORT, API_USER_URL, DEPLOYED_HOME_URL} from './browser_constant.js';
 import { eACTION, eDISPLAY,
          funcDisplayStatus } from './utility.js';
 
@@ -123,7 +123,8 @@ async function funcRegisterUser(event)
                 await new Promise(resolve => setTimeout(resolve, CONST_LOG_IN_DELAY_MS * 3));
 
                 // Drive to LogIn Page
-                window.location.href = `http://localhost:${PORT}/index.html`;
+                //window.location.href = `http://localhost:${PORT}/index.html`;
+                window.location.href = `${DEPLOYED_HOME_URL}/index.html`;
             }
         }
     }
@@ -180,7 +181,8 @@ async function funcLogInUser(event)
                 await new Promise(resolve => setTimeout(resolve, CONST_LOG_IN_DELAY_MS));
 
                 // Direct to Home Page
-                window.location.href = `http://localhost:${PORT}/home.html`;
+                //window.location.href = `http://localhost:${PORT}/home.html`;
+                window.location.href = `${DEPLOYED_HOME_URL}/home.html`;
             }
             else
             {

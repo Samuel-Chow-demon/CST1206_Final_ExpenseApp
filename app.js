@@ -35,6 +35,7 @@ app.use(`${API_EXPENSE_URL}`, expenseRoutes);   // Expense Document Process
 
 // 6 - Home Page
 // This will allow you to host your frontend files on the server, that is the localhost:5500/ would run the html file in the fronend folder
+// After deployed by render, it would run by DEPLOYED_HOME_URL configured in the browser_constant.js
 app.use(express.static(path.join(__dirname, 'frontend')));
 
 // app.get('/', (req, res)=>{

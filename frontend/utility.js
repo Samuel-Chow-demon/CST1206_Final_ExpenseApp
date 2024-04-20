@@ -1,5 +1,5 @@
 // 1 - Retrieve the import constant
-import { PORT, API_EXPENSE_URL } from './browser_constant.js';
+import { PORT, API_EXPENSE_URL, DEPLOYED_HOME_URL } from './browser_constant.js';
 
 const ICON_CLASS_LARGE_SIZE    = "fa-2xl";
 const ICON_CLASS_MEDIUM_SIZE   = "fa-xl";
@@ -34,7 +34,8 @@ export function funcReturnLogInPageHandle(promptMessage = "")
     {
         alert(promptMessage);
     }
-    window.location.href = `http://localhost:${PORT}`;
+    //window.location.href = `http://localhost:${PORT}`;
+    window.location.href = `${DEPLOYED_HOME_URL}`;
 }
 
 export function funcDisplayStatus(displayDOMObj, eDisplay, eAction, message)
