@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="module" src="./browser_constant.js"></script>
+    <script type="module" src="./utility.js"></script>
+    <script type="module" src="./homeCheckToken.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script type="module" src="./account.js" defer></script>
+    <script src="https://kit.fontawesome.com/36398ab85c.js" crossorigin="anonymous"></script>
+
+    <title>Profile</title>
+</head>
+<body>
+
+    <div class="min-h-screen flex flex-row bg-gray-100">
+
+        <!-- Left - Navigator -->
+        <div class="flex flex-col w-64 min-w-64 bg-white rounded-r-3xl overflow-hidden">
+
+            <div class="flex items-center justify-center h-20 shadow-md">
+                <img class="mr-1 h-12 w-auto" src="./assets/img/MathLogo.svg" alt="">
+                <h1 class="text-3xl uppercase text-orange-400">Expense</h1>
+                <h1 class="mr-3 text-3xl uppercase text-rose-500">App</h1>
+            </div>
+
+            <ul class="flex flex-col py-6">
+                <li>
+                    <a href="./home.html" class="flex flex-row items-center h-16 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-500 hover:text-gray-800">
+                        <span class="ml-3 inline-flex items-center justify-center h-16 w-12 text-lg text-gray-400"><i class="fa-solid fa-circle-arrow-left fa-lg" style="color: #6d727e;"></i></span>
+                        <span class="ml-3 text-xl font-medium">Back</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Right - Main Content  -->
+        <div class="flex flex-col w-full">
+            <!-- banner -->
+            <div class="h-20 min-h-20 bg-gradient-to-r from-emerald-200 to-amber-300 grid grid-cols-3">
+                <div class="col-start-1 col-span-1 h-full w-full flex flex-col justify-center">
+                    <span class="mx-12 text-gray-600 text-2xl font-semibold">Account Profile</span>
+                </div>
+            </div>
+
+            <!-- Record, Chart -->
+            <div class="h-full flex flex-col justify-between">
+                
+                <div class="w-full grid grid-cols-2 grid-rows-1">
+
+                    <form class="space-y-6 col-start-1 col-span-1 px-10 py-5">
+
+                        <div>
+                            <label for="name" class="block text-1xl font-medium leading-6 text-gray-900">Name</label>
+                            <div class="mt-2 flex">
+                                <input id="input-name-modify" name="name" type="text" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-base sm:leading-6 max-h-10 pl-2
+                                pointer-events-none">
+
+                                <div id="button-allow-modify-name" class="inline h-10 w-10 bg-gray-300 flex flex-col justify-center items-center ml-2 p-2 rounded-lg hover:bg-gray-400 border-b">
+                                    <i id="input-add-icon" class="fa-regular fa-pen-to-square fa-xl" style="color: #848991;"></i>
+                                </div>
+
+                                <div id="menu-modify-ok-cancel-name" class="inline flex hidden">
+                                    <div id="button-modify-ok-name" class="inline h-10 w-10 bg-gray-300 flex flex-col justify-center items-center ml-2 p-2 rounded-lg hover:bg-green-400 border-b">
+                                        <i id="input-add-icon" class="fa-solid fa-check fa-xl" style="color: #239a25;"></i>
+                                    </div>
+                                    <div id="button-modify-cancel-name" class="inline h-10 w-10 bg-gray-300 flex flex-col justify-center items-center ml-2 p-2 rounded-lg hover:bg-rose-400 border-b">
+                                        <i id="input-add-icon" class="fa-solid fa-xmark fa-xl" style="color: #ff2934;"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="email" class="block text-1xl font-medium leading-6 text-gray-900">Email address (Account Name)</label>
+                            <div class="mt-2 flex">
+                                <input id="input-email-modify" name="email" type="text" autocomplete="email" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-base sm:leading-6 max-h-10 pl-2
+                                pointer-events-none">
+
+                                <div id="button-allow-modify-email" class="inline h-10 w-10 bg-gray-300 flex flex-col justify-center items-center ml-2 p-2 rounded-lg hover:bg-gray-400 border-b">
+                                    <i id="input-add-icon" class="fa-regular fa-pen-to-square fa-xl" style="color: #848991;"></i>
+                                </div>
+
+                                <div id="menu-modify-ok-cancel-email" class="inline flex hidden">
+                                    <div id="button-modify-ok-email" class="inline h-10 w-10 bg-gray-300 flex flex-col justify-center items-center ml-2 p-2 rounded-lg hover:bg-green-400 border-b">
+                                        <i id="input-add-icon" class="fa-solid fa-check fa-xl" style="color: #239a25;"></i>
+                                    </div>
+                                    <div id="button-modify-cancel-email" class="inline h-10 w-10 bg-gray-300 flex flex-col justify-center items-center ml-2 p-2 rounded-lg hover:bg-rose-400 border-b">
+                                        <i id="input-add-icon" class="fa-solid fa-xmark fa-xl" style="color: #ff2934;"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                
+                        <div>
+                            <div class="flex items-center justify-between">
+                                <label for="password" class="block text-1xl font-medium leading-6 text-gray-900">Password</label>   
+                            </div>
+
+                            <div>
+                                <button id="button-show-change-password-menu" type="button" class="mt-2 flex w-full justify-center rounded-md bg-gray-500 py-2 text-lg font-semibold leading-6 text-white shadow-sm hover:bg-gray-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-600">
+                                    <span class="">Modify</span>
+                                    <i id="icon-password-modify-button" class="mt-1 ml-5 fa-solid fa-angles-down"></i>
+                                </button>
+                            </div>
+
+                            <div id="menu-change-password" class="mt-4 border-2 border-gray-400 p-4 rounded-lg hidden">
+                                <div class="mt-4">
+                                    <label for="password" class="block text-1xl font-medium leading-6 text-gray-900">Old Password</label>
+                                    <input id="input-password-old" name="password" type="password" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                </div>
+                                <div class="mt-4">
+                                    <label for="password" class="block text-1xl font-medium leading-6 text-gray-900">New Password</label>
+                                    <input id="input-password-new" name="password" type="password" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+                    <div class="col-start-2 col-span-1">
+                        <table class="w-11/12 text-sm text-left text-gray-500 dark:text-gray-400 m-4 mt-2">
+                            <thead class="text-sm text-gray-100 uppercase bg-gray-600 rounded-t-lg sticky top-0">
+                                <tr>
+                                    <th colspan="3" class="px-6 text-center text-base rounded-t-lg border-b border-gray-100">
+                                        User Defined Category
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th colspan="3" id="button-reset-category-table" class="px-6 text-center text-base border-b border-gray-100 bg-indigo-500 hover:bg-indigo-700 hover:text-lg">
+                                        RESET
+                                    </th>
+                                </tr>
+                                <tr class="whitespace-nowrap">
+                                    <th scope="col" class="px-6 py-3 text-center">
+                                        Icon
+                                    </th>
+                                    <th scope="col" class="px-6 py-3 text-center">
+                                        Category
+                                    </th>
+                                    </th>
+                                    <th scope="col" class="px-6 py-3 text-center">
+                                    </th>
+                                </tr>
+                            </thead>
+                                <tbody id="table-user-category" class="overflow-y-scroll">
+                                </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex flex-row justify-center">
+                <button id="button-proceed-info-change" type="button" class="flex min-w-96 justify-center rounded-md bg-indigo-600 py-3 text-lg font-semibold leading-6 text-white shadow-sm hover:bg-indigo-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Proceed Changes</button>
+            </div>
+
+            <footer class="my-4 text-center py-4">
+                <p class="text-gray-600">ExpenseApp © 2024 Samuel Chow</p>
+            </footer>
+        </div>
+
+        <div id="menu-confirm-info-change" class="w-full h-full bg-gray-500 bg-opacity-80 top-0 fixed sticky-0 hidden">
+            <div class="2xl:container 2xl:mx-auto py-10 md:px-28 flex justify-center items-center shadow-cyan-500/50">
+                <div class="w-6/12 rounded-lg dark:bg-grey-100 relative flex flex-col justify-center items-center bg-gray-100 pt-10 px-4" style="min-width: 500px;">
+
+                    <label class="block text-2xl font-medium leading-6 text-gray-900 m-2">Confirm Your Changes :</label>
+
+                    <div id="disp-info-update-status" class="mt-2 hidden">
+                    </div>
+
+                    <!-- Grid Design -->
+                    <div id="disp-info-changes" class="w-full grid grid-cols-7 gap-0 border border-gray-400 border-2 rounded-lg m-5 p-4" style="grid-auto-rows: 50px;">
+                    </div>
+
+                    <div>
+                        <button id="button-confirm-info-change" type="button" class="flex w-full justify-center rounded-md bg-green-600 py-2 text-lg font-semibold leading-6 text-white shadow-sm hover:bg-green-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600 p-4 m-2">Confirm</button>
+                    </div>
+                    <div>
+                        <button id="button-info-change-fin" type="button" class="flex w-full justify-center rounded-md bg-gray-500 py-2 text-lg font-semibold leading-6 text-white shadow-sm hover:bg-gray-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-500 p-4 m-2 hidden">OK</button>
+                    </div>
+
+                    <button id="button-cancel-info-change" class="text-gray-800 dark:text-gray-400 absolute top-4 right-4 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800" aria-label="close">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M18 6L6 18" stroke="currentColor" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M6 6L18 18" stroke="currentColor" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+</html>
