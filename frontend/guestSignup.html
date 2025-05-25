@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="module" src="./browser_constant.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script type="module" src="./loginSignup.js" defer></script>
+    <title>Guest</title>
+</head>
+<body>
+    <div class="grid grid-cols-5 gap-0">
+        <div class="h-auto col-span-3 ... bg-cover bg-[url('/assets/img/front_page_background.webp')]"></div>
+
+        <div class="col-span-2 ... flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
+            <div class="mx-auto w-full">
+                <img class="mx-auto h-20 w-auto" src="/assets/img/MathLogo.svg" alt="">
+                <h1 class="mt-2 text-center text-4xl font-bold leading-9 tracking-tight text-teal-500">Welcome to ExpenseApp!</h1>
+                <div id="display-status" class="mt-2 hidden">
+                </div>
+                <h2 class="mt-16 ml-10 text-left text-2xl font-medium underline-offset-5 text-gray-400">Guest Trials</h2>
+            </div>
+        
+            <div class="mt-10 mx-10">
+                <form id="guest-signup-login" class="space-y-10">
+                    <div>
+                        <label for="name" class="block text-xl font-medium leading-6 text-gray-400">Notes:</label>
+
+                        <ul class="list-disc divide-y divide-indigo-300 space-y-4 ml-5 mt-5">
+                            <li>
+                                <p class="text-base text-left font-semibold text-gray-900">Guest account would be <span style="color:orange">removed</span> 
+                                    after logged out or <span style="color:orange">persisted ONE day only</span></p>
+                            </li>
+                            <li>
+                                <p class="text-base text-left font-semibold text-gray-900">Guest account created <span style="color:orange">entries would be removed</span> after <span style="color:orange">ONE day</span></p>
+                            </li>
+                            
+                        </ul>
+                        
+                    </div>
+
+                    <div>
+                        <label for="email" class="block text-xl font-medium leading-6 text-gray-400">Disclaimer:</label>
+                        <div class="mt-2 flex flex-col justify-center items-start gap-4">
+                            <p class="text-base text-left text-justify font-semibold text-gray-900">This expense tracking application is designed for non-commerical and education purpose record-keeping only. It does not provide any security guarantees for sensitive information. Users are responsible for the accuracy and appropriateness of their entries, including any personally identifiable or sensitive data. We are not liable for any damages, losses, or misuse of information resulting from entries made by users. Please exercise caution and discretion when inputting your data. </p>
+
+                            <p class="text-base text-left text-justify font-semibold text-gray-900">By pressing the "Guest LogIn" button below to start the trials of the application, users acknowledge and accept the above disclaimer, and understand that any data they enter will be treated as general input, and is not intended for the storage or handling of sensitive personal data.</p>
+                        </div>
+                    </div>
+            
+                    <div>
+                        <button type="submit" class="flex w-full justify-center rounded-md bg-indigo-600 py-2 text-lg font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Guest LogIn</button>
+                    </div>
+                </form>
+            
+                <p class="mt-10 text-center text-base text-gray-500">
+                    Already have an account ?
+                    <a href="index.html" class="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">Log In Here</a>
+                </p>
+
+                <footer class="text-center mt-10">
+                    <p class="text-gray-600">ExpenseApp © 2024 Samuel Chow</p>
+                </footer>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

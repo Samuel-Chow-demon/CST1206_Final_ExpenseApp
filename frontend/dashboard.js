@@ -120,7 +120,7 @@ async function initGetUserInfo()
     if (retObj.valid)
     {
         const userInfoObj = retObj.loginUserJSON.data;
-        const userName = userInfoObj.name;
+        const userName = userInfoObj.guest ? userInfoObj.name.split('-')[0] : userInfoObj.name;
         const userLastUpdate = userInfoObj.updatedAt;
 
         outputBannerUserName.innerHTML = `Welcome back, ${capitalizeEveryFirstLetter(userName)}`;
