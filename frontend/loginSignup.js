@@ -10,6 +10,8 @@ const formLogIn = document.getElementById("form-login");
 const formSignUp = document.getElementById("form-signup");
 const displayStatus = document.getElementById("display-status");
 
+const guestSignUpLogIn = document.getElementById("guest-signup-login");
+
 // const eACTION = {
 //     LOGIN : "Log In",
 //     SIGNUP : "Sign Up"
@@ -72,17 +74,28 @@ const displayStatus = document.getElementById("display-status");
 //     }
 // }
 
-async function funcRegisterUser(event)
+async function funcRegisterUser(event, isGuest = false)
 {
     event.preventDefault();
-    const name = document.getElementById('input-name-signup').value;
-    const email = document.getElementById('input-email-signup').value;
-    const password = document.getElementById('input-password-signup').value;
+    const name = document.getElementById('input-name-signup')?.value;
+    const email = document.getElementById('input-email-signup')?.value;
+    const password = document.getElementById('input-password-signup')?.value;
 
-    const newAccount = {
+    let newAccount = {
         name,
         email,
         password
+    }
+
+    if (isGuest)
+    {
+        const UUID = crypto.randomUUID()
+        newAccount = {
+            name: `Guest-${UUID}`,
+            email: `${UUID}@guest.com`,
+            password: UUID,
+            guest: true
+        }
     }
 
     funcDisplayStatus(displayStatus, eDISPLAY.LOADING, eACTION.SIGNUP, "");
@@ -116,8 +129,11 @@ async function funcRegisterUser(event)
             // Wait for the next browser repaint using requestAnimationFrame
             await new Promise(resolve => requestAnimationFrame(resolve));
 
+            //console.log(createdUserJSON);
+
             // Create Success to direct to log in page
-            if (createdUser.status === 201)
+            if (!isGuest &&
+                createdUser.status === 201)
             {
                 // Wait for 1500 ms
                 await new Promise(resolve => setTimeout(resolve, CONST_LOG_IN_DELAY_MS * 3));
@@ -132,19 +148,29 @@ async function funcRegisterUser(event)
         //alert(`Error : ${error}`);
         funcDisplayStatus(displayStatus, eDISPLAY.FAIL, eACTION.SIGNUP, error);
     }
+
+    return newAccount;
 }
 
-async function funcLogInUser(event)
+async function funcLogInUser(event, guestAccount={})
 {
     event.preventDefault();
     const emailObj = document.getElementById('input-email-login');
     const passwordObj = document.getElementById('input-password-login');
-    const email = emailObj.value;
-    const password = passwordObj.value;
+    const email = emailObj?.value;
+    const password = passwordObj?.value;
 
-    const signinAccount = {
+    let signinAccount = {
         email,
         password
+    }
+
+    if (Object.keys(guestAccount).length > 0)
+    {
+        signinAccount = {
+            email: guestAccount.email,
+            password: guestAccount.password
+        }
     }
 
     funcDisplayStatus(displayStatus, eDISPLAY.LOADING, eACTION.LOGIN, "");
@@ -179,6 +205,8 @@ async function funcLogInUser(event)
 
                 // Wait for 550 ms
                 await new Promise(resolve => setTimeout(resolve, CONST_LOG_IN_DELAY_MS));
+
+                //console.log(loginUserJSON);
 
                 // Direct to Home Page
                 //window.location.href = `http://localhost:${PORT}/home.html`;
@@ -223,5 +251,19 @@ if (formSignUp)
 {
     formSignUp.addEventListener("submit", (event)=>{
         funcRegisterUser(event);
+    });
+}
+
+if (guestSignUpLogIn)
+{
+    guestSignUpLogIn.addEventListener("submit", async (event)=>{
+
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+
+        const guestAccount = await funcRegisterUser(event, true);
+        funcLogInUser(event, guestAccount);
     });
 }
