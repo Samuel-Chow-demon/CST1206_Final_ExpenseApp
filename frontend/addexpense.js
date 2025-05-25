@@ -229,10 +229,14 @@ async function createExpenseRecord(event)
 
     if (userObj.valid)
     {
+        const userData = userObj.loginUserJSON.data;
+
         // 1 - Update User Category
-        const userID        = userObj.loginUserJSON.data._id;
+        const userID        = userData._id;
         const iconIDStr     = inputAddIcon.getAttribute(ICON_ID_ATTRIB_KEY);
         const categoryName  = inputCAT.value;
+
+        const isGuest = userData.guest ?? false;
 
         /*{
             id : Account_Object_id,
@@ -295,7 +299,10 @@ async function createExpenseRecord(event)
                     receiver : receiverName,
                     description : descriptionContent,
                     cost : costValue,
-                    date : dateTimeMongoose
+                    date : dateTimeMongoose,
+                    autoDelete : isGuest ? {
+                        day: 1
+                    } : null
                 };
 
                 const createdExpense = await fetch(`${API_EXPENSE_URL}/create`, {
@@ -323,6 +330,8 @@ async function createExpenseRecord(event)
                 }
                 else
                 {
+                    //console.log(createdExpenseJSON);
+
                     // All Good to close the Expense Menu
                     objectShowHideHandle(false, menuExpense);
 

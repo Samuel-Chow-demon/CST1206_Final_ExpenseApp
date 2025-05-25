@@ -104,6 +104,17 @@ async function initAccountProfilePage()
         handleModifyObj.origCategoryUse = userCategoryUse;
         handleModifyObj.modCategoryUse = userCategoryUse;
 
+        if (userInfoObj.guest)
+        {
+            inputNameModify.disabled = true;
+            inputEmailModify.disabled = true;
+            buttonAllowModifyName.disabled = true;
+            buttonAllowModifyEmail.disabled = true;
+
+            inputOldPassword.disabled = true;
+            inputNewPassword.disabled = true;
+        }
+
         generateUserCategoryTable(handleModifyObj.modCategoryUse);
     }
     else
@@ -494,6 +505,12 @@ buttonShowChangePSMenu.addEventListener("click", (event)=>{
 buttonAllowModifyName.addEventListener("click", (event)=>{
 
     objectLockUnlockHandle(false, inputNameModify, ()=>{
+
+        if (buttonAllowModifyName.disabled)
+        {
+            return;
+        }
+
         inputNameModify.focus();
         buttonAllowModifyName.classList.toggle("hidden");
         menuModifyOKCancelName.classList.toggle("hidden");
@@ -521,6 +538,12 @@ buttonModifyCancelName.addEventListener("click", (event)=>{
 buttonAllowModifyEmail.addEventListener("click", (event)=>{
 
     objectLockUnlockHandle(false, inputEmailModify, ()=>{
+
+        if (buttonAllowModifyEmail.disabled)
+        {
+            return;
+        }
+
         inputEmailModify.focus();
         buttonAllowModifyEmail.classList.toggle("hidden");
         menuModifyOKCancelEmail.classList.toggle("hidden");
