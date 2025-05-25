@@ -1,5 +1,7 @@
-const userModel = require('../models/user');
-const expenseModelCollection = require('../models/expense');
+const { getDateAfter } = require('../utility.js');
+
+const userModel = require('../models/user.js');
+const expenseModelCollection = require('../models/expense.js');
 
 const iconModel     = expenseModelCollection.iconModel;
 const expenseModel  = expenseModelCollection.expenseModel;
@@ -74,6 +76,8 @@ const AddNewExpense = async (req, res)=>{
         });
     }
 
+    const getDate = getDateAfter(infoBody.autoDelete ?? {});
+
     // Create a new document
     const newExpense = new expenseModel({
         accountId : userId,
@@ -82,7 +86,8 @@ const AddNewExpense = async (req, res)=>{
         receiver : infoBody.receiver,
         description : infoBody.description,
         cost : infoBody.cost,
-        date : infoBody.date
+        date : infoBody.date,
+        expiredAt: (infoBody.autoDelete) ? getDate.expire : null
     })
 
     // Send to Database
@@ -91,7 +96,8 @@ const AddNewExpense = async (req, res)=>{
         const createdNewExpense = await newExpense.save();
         return res.status(201).json({
             message : "New Expense Added Successfully",
-            data : createdNewExpense
+            data : createdNewExpense,
+            getDate: getDate
         });
     }
     catch (error)
