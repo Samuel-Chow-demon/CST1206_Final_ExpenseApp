@@ -12,8 +12,8 @@ const express           = require('express');
 const mongoose          = require('mongoose');
 const path              = require('path');
 const app               = express();
-const userRoutes        = require('./routes/userRoute');
-const expenseRoutes     = require('./routes/expenseRoute');
+const userRoutes        = require('./backend/routes/userRoute');
+const expenseRoutes     = require('./backend/routes/expenseRoute');
 
 // 3 - Connect to Database
 mongoose

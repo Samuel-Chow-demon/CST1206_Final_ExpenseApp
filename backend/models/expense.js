@@ -30,6 +30,10 @@ const expenseSchema = mongoose.Schema({
     date : {
         type : Date,
         required : true
+    },
+    expiredAt: {
+        type: Date,
+        expires: 0
     }
 
 }, {

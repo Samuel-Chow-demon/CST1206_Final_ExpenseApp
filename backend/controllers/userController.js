@@ -1,3 +1,5 @@
+const { getDateAfter } = require('../utility.js');
+
 const userModel = require('../models/user');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
@@ -57,10 +59,14 @@ const RegisterUser = async (req, res)=>{
 
     const encrytedPW = await bcrypt.hash(userBody.password, 10);
 
+    const getDate = getDateAfter({day : 1});
+
     const newUser = new userModel({
         name : userBody.name,
         email : userBody.email,
         password : encrytedPW,
+        guest: userBody.guest ?? false,
+        expiredAt: userBody.guest ? getDate.expire : null
     })
 
     try 
@@ -68,7 +74,8 @@ const RegisterUser = async (req, res)=>{
         const createdUser = await newUser.save();
         return res.status(201).json({
             message : "New User Registered Successfully",
-            data : createdUser
+            data : createdUser,
+            getDate : getDate
         });
     }
     catch (error)
@@ -163,6 +170,8 @@ const UserLogIn = async (req, res)=>{
             categoryUse : userExisted.categoryUse,
             createdAt : userExisted.createdAt,
             updatedAt : userExisted.updatedAt,
+            expiredAt: userExisted.expiredAt ?? "N/A",
+            guest: userExisted.guest ?? false,
             token : accessToken
         }
     });
